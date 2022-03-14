@@ -6,6 +6,9 @@ A demo of a game I made in Godot as a college project.
 
 (Click the image to watch on youtube)
 
+# How to run
+Clone the repository and go to **Release**. You should find executables for Windows and Linux.
+
 # Overview
 ## Back in 2018 I was given an assignment during my college game design classes.
 I had 6 months to learn how to and actually make a game demo from scratch.
