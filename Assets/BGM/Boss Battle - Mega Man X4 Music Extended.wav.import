@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Boss Battle - Mega Man X4 Music Extended.wav-4ef8a3da158abd800bb928db79d1875f.sample"
+
+[deps]
+
+source_file="res://Assets/BGM/Boss Battle - Mega Man X4 Music Extended.wav"
+dest_files=[ "res://.import/Boss Battle - Mega Man X4 Music Extended.wav-4ef8a3da158abd800bb928db79d1875f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

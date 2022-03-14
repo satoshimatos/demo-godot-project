@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/BG/spaceBG1.png" type="Texture" id=1]
+
+[node name="parallax" type="ParallaxBackground"]
+
+[node name="layer4" type="ParallaxLayer" parent="."]
+position = Vector2( 240, 150 )
+z_index = -4
+motion_scale = Vector2( 0.02, 0.02 )
+motion_offset = Vector2( 0, -150 )
+motion_mirroring = Vector2( 1440, 0 )
+
+[node name="bg1" type="Sprite" parent="layer4"]
+position = Vector2( 53.4455, 5.01056 )
+texture = ExtResource( 1 )
+

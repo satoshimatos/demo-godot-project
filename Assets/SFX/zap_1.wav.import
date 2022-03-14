@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/zap_1.wav-f3b1152556d42c7f6596a965bcadcadd.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/zap_1.wav"
+dest_files=[ "res://.import/zap_1.wav-f3b1152556d42c7f6596a965bcadcadd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

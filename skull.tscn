@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://skull.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Charsets/shield_enemy1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Charsets/shield_enemy2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Charsets/shield_enemy3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=5]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 15, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 59.6
+initial_velocity_random = 0.69
+angular_velocity = 4.95926e-039
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -19.39
+radial_accel_random = 0.41
+angle = -698.2
+color = Color( 0.898039, 0.407843, 0.0823529, 1 )
+hue_variation = 0.15
+hue_variation_random = 0.68
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "glowing",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "hit"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("shield:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="skull" type="Area2D"]
+position = Vector2( 0, -1 )
+collision_mask = 524287
+script = ExtResource( 1 )
+
+[node name="aura" type="Particles2D" parent="."]
+z_index = -1
+amount = 40
+lifetime = 0.5
+process_material = SubResource( 1 )
+
+[node name="shield" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "glowing"
+frame = 1
+playing = true
+
+[node name="lighting" type="Light2D" parent="shield"]
+position = Vector2( 12.8741, -0.231968 )
+scale = Vector2( 0.1, 0.3 )
+z_index = -2
+texture = ExtResource( 5 )
+texture_scale = 1.83
+color = Color( 0.988235, 0.964706, 0.886275, 1 )
+mode = 2
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( -2.76622, 3.07359 )
+polygon = PoolVector2Array( -13.8434, 1.61239, -13.7275, -18.8006, -6.42054, -26.3395, 0.190491, -26.2235, 13.4125, -19.8444, 14.9203, -13.4654, 18.3998, -7.55026, 17.7039, -0.243333, 13.1806, 7.17957, 9.58511, 10.775, 1.81425, 18.1979, -5.14472, 18.082, -10.9439, 9.61521 )
+
+[node name="ray_collision_left" type="RayCast2D" parent="."]
+position = Vector2( -8.95615, 1.24188 )
+scale = Vector2( 1, 7 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+collision_mask = 524287
+
+[node name="eyes" type="Light2D" parent="."]
+position = Vector2( -8.05658, -5.18325 )
+texture = ExtResource( 5 )
+texture_scale = 0.3
+color = Color( 0.996078, 0, 0, 1 )
+energy = 0.4
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/hit = SubResource( 3 )
+

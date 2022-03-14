@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NFF-alien-speech.wav-bbe2c8f09f2f0ad6b89db629c7f5770b.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/NFF-alien-speech.wav"
+dest_files=[ "res://.import/NFF-alien-speech.wav-bbe2c8f09f2f0ad6b89db629c7f5770b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

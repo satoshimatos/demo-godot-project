@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://pencilphysics.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Animations/laser.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SFX/laser_1.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 1.97772 )
+
+[node name="pencil" type="Node2D"]
+
+[node name="pencilphysics" type="Area2D" parent="."]
+collision_mask = 1048575
+script = ExtResource( 1 )
+velocity = Vector2( 450, 0 )
+
+[node name="pencilsprite" type="Sprite" parent="pencilphysics"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="light" type="Light2D" parent="pencilphysics/pencilsprite"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+offset = Vector2( 4, 0 )
+texture_scale = 1.75
+color = Color( 0.933333, 0.427451, 0.427451, 1 )
+
+[node name="collision" type="CollisionShape2D" parent="pencilphysics"]
+shape = SubResource( 1 )
+
+[node name="floor_collision" type="RayCast2D" parent="pencilphysics/collision"]
+position = Vector2( -7, 0 )
+scale = Vector2( 1, 2 )
+enabled = true
+cast_to = Vector2( 14, 0 )
+collision_mask = 16384
+collide_with_areas = true
+
+[node name="visibility" type="VisibilityNotifier2D" parent="pencilphysics"]
+scale = Vector2( 2, 1.3 )
+
+[node name="laser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+max_distance = 500.0
+
+[connection signal="screen_exited" from="pencilphysics/visibility" to="pencilphysics" method="_on_VisibilityNotifier2D_screen_exited"]

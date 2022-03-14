@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://musical_notes.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Objects/ripple.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/boss_projectile.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Objects/boss_projectile2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Objects/boss_projectile3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/SFX/charge_up.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/SFX/laser_impact1.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/SFX/explosion_1.wav" type="AudioStream" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "ripple",
+"speed": 0.01
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "note2",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "note1",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "explode"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2, 2 ) ]
+}
+
+[node name="musical_notes" type="Area2D"]
+position = Vector2( 52.1815, 76.5654 )
+z_index = -2
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="colllision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "ripple"
+
+[node name="anim" type="AnimationPlayer" parent="sprite"]
+anims/explode = SubResource( 3 )
+
+[node name="note" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="shot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+pitch_scale = 0.5
+autoplay = true
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = 5.0
+
+[node name="light" type="Light2D" parent="."]
+texture = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_musical_notes_body_entered"]

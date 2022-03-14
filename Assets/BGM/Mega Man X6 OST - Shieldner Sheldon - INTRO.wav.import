@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Mega Man X6 OST - Shieldner Sheldon - INTRO.wav-a94101882121b7ef072dc37c192a2a5b.sample"
+
+[deps]
+
+source_file="res://Assets/BGM/Mega Man X6 OST - Shieldner Sheldon - INTRO.wav"
+dest_files=[ "res://.import/Mega Man X6 OST - Shieldner Sheldon - INTRO.wav-a94101882121b7ef072dc37c192a2a5b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

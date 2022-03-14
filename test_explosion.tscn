@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://test_explosion.gd" type="Script" id=1]
+[ext_resource path="res://Assets/SFX/robot_malfunction.wav" type="AudioStream" id=2]
+
+[node name="test_explosion" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+
+[node name="Timer_faster" type="Timer" parent="Timer"]
+wait_time = 0.2
+
+[node name="lifetime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="note_spawner" type="Timer" parent="."]
+wait_time = 8.5
+one_shot = true
+autostart = true
+
+[node name="shaker" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -13.0
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer/Timer_faster" to="." method="_on_Timer_faster_timeout"]
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

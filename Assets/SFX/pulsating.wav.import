@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pulsating.wav-9e8c5c11262d306ad44b8ae81b91d7b4.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/pulsating.wav"
+dest_files=[ "res://.import/pulsating.wav-9e8c5c11262d306ad44b8ae81b91d7b4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

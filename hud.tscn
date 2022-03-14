@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://hud.gd" type="Script" id=1]
+[ext_resource path="res://Itemcount.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HP.tscn" type="PackedScene" id=3]
+[ext_resource path="res://chargebarframe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://energybar_frame.tscn" type="PackedScene" id=5]
+[ext_resource path="res://boss_hp_frame.tscn" type="PackedScene" id=6]
+[ext_resource path="res://stage_timer.tscn" type="PackedScene" id=7]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="item" parent="." instance=ExtResource( 2 )]
+position = Vector2( 146.94, 22.7049 )
+
+[node name="HP" parent="." instance=ExtResource( 3 )]
+position = Vector2( 52.9485, 21.6223 )
+
+[node name="chargebarframe" parent="." instance=ExtResource( 4 )]
+position = Vector2( 71.5266, 28.7723 )
+
+[node name="energybar_frame" parent="." instance=ExtResource( 5 )]
+position = Vector2( 122.554, 22.6202 )
+
+[node name="boss_hp_frame" parent="." instance=ExtResource( 6 )]
+position = Vector2( 233.727, 250.709 )
+
+[node name="hourglass" parent="." instance=ExtResource( 7 )]
+position = Vector2( 224.406, 22.5953 )
+
+[node name="text" parent="hourglass/stage_timer" index="0"]
+margin_left = 238.876
+margin_top = 17.223
+margin_right = 274.876
+margin_bottom = 34.223
+
+
+[editable path="hourglass"]

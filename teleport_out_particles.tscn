@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+trail_divisor = 3
+emission_shape = 2
+emission_box_extents = Vector3( 14, 1, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, -100, 0 )
+angular_velocity = 2048.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+
+[node name="teleport_out_particles" type="Particles2D"]
+show_behind_parent = true
+position = Vector2( 49.1257, 78.1467 )
+emitting = false
+amount = 30
+lifetime = 3.0
+process_material = SubResource( 1 )
+

@@ -1,0 +1,90 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://greengate.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Objects/greengate_1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/greengate_2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Objects/greengate_3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Objects/greengate_4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Objects/greengate_5.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Objects/greengate_6.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Objects/greengate_7.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Objects/greengate_8.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Objects/greengate_9.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Objects/greengate_10.png" type="Texture" id=11]
+[ext_resource path="res://Assets/SFX/mech_moving_inverted.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "opening",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31.8841, 8.09672 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("animation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "flashing"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 2.0, 1.0 ]
+}
+
+[node name="greengate" type="RigidBody2D"]
+collision_layer = 1048575
+collision_mask = 1048575
+mode = 1
+script = ExtResource( 1 )
+
+[node name="animation" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "opening"
+frame = 1
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 3 )
+
+[node name="open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -12.0
+pitch_scale = 1.4
+
+[node name="light" type="Light2D" parent="."]
+position = Vector2( -24.9126, -0.166084 )
+texture = ExtResource( 13 )
+texture_scale = 0.3
+color = Color( 0.129412, 0.862745, 0, 1 )
+
+[node name="anim" type="AnimationPlayer" parent="light"]
+anims/flashing = SubResource( 4 )
+

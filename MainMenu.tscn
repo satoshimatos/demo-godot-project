@@ -1,0 +1,337 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/GUI/title.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Charsets/vitor_idle1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Charsets/laser_vitor_idle_charge.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/dpcomic.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=6]
+[ext_resource path="res://Assets/SFX/laser_2.wav" type="AudioStream" id=7]
+[ext_resource path="res://credits.tscn" type="PackedScene" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "selected",
+"speed": 1.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+outline_color = Color( 0.647059, 0, 0, 1 )
+extra_spacing_char = 3
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "selected"
+length = 0.25
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.611765, 0.611765, 1 ), Color( 1, 0.858824, 0.67451, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.996078, 0.67451, 1 ), Color( 1, 0.819608, 0.611765, 1 ), Color( 1, 0.72549, 0.72549, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "selected"
+length = 0.25
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.611765, 0.611765, 1 ), Color( 1, 0.858824, 0.67451, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.996078, 0.67451, 1 ), Color( 1, 0.819608, 0.611765, 1 ), Color( 1, 0.72549, 0.72549, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "selected"
+length = 0.25
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.611765, 0.611765, 1 ), Color( 1, 0.858824, 0.67451, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.996078, 0.67451, 1 ), Color( 1, 0.819608, 0.611765, 1 ), Color( 1, 0.72549, 0.72549, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "selected"
+length = 0.25
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.611765, 0.611765, 1 ), Color( 1, 0.858824, 0.67451, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.996078, 0.67451, 1 ), Color( 1, 0.819608, 0.611765, 1 ), Color( 1, 0.72549, 0.72549, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 265.028, 147.033, 891.449, 40.786 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.6, 0.6, 0.6, 1 ), Color( 0.3, 0.3, 0.3, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.8 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.0647042, 1 ),
+"update": 0,
+"values": [ Vector2( 20, 20 ), Vector2( 20, 20 ) ]
+}
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 240, 135 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 2 )
+
+[node name="selector" type="AnimatedSprite" parent="."]
+position = Vector2( 58.5371, 52.2653 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="start" type="Label" parent="."]
+modulate = Color( 1, 0.819608, 0.611765, 1 )
+anchor_right = 0.4
+margin_left = 119.358
+margin_top = 51.3018
+margin_right = 175.358
+margin_bottom = 71.3018
+mouse_filter = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.905882, 0.796078, 0.556863, 1 )
+text = "Start"
+align = 1
+valign = 1
+
+[node name="anim" type="AnimationPlayer" parent="start"]
+anims/normal = SubResource( 3 )
+anims/selected = SubResource( 4 )
+
+[node name="tutorial" type="Label" parent="."]
+anchor_right = 0.4
+margin_left = 115.283
+margin_top = 94.9812
+margin_right = 183.283
+margin_bottom = 116.981
+mouse_filter = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.905882, 0.796078, 0.556863, 1 )
+text = "Tutorial"
+align = 1
+valign = 1
+
+[node name="anim" type="AnimationPlayer" parent="tutorial"]
+anims/normal = SubResource( 5 )
+anims/selected = SubResource( 6 )
+
+[node name="quit" type="Label" parent="."]
+anchor_right = 0.4
+margin_left = 119.0
+margin_top = 140.0
+margin_right = 175.0
+margin_bottom = 161.0
+mouse_filter = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.905882, 0.796078, 0.556863, 1 )
+text = "Quit"
+align = 1
+valign = 1
+
+[node name="anim" type="AnimationPlayer" parent="quit"]
+anims/normal = SubResource( 7 )
+anims/selected = SubResource( 8 )
+
+[node name="credits" type="Label" parent="."]
+anchor_right = 0.4
+margin_left = 117.803
+margin_top = 181.313
+margin_right = 173.803
+margin_bottom = 202.313
+mouse_filter = 1
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.905882, 0.796078, 0.556863, 1 )
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="anim" type="AnimationPlayer" parent="credits"]
+anims/normal = SubResource( 9 )
+anims/selected = SubResource( 10 )
+
+[node name="timer_tutorial" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="screen_darkener" type="CanvasModulate" parent="."]
+editor/display_folded = true
+
+[node name="anim" type="AnimationPlayer" parent="screen_darkener"]
+anims/fadein = SubResource( 11 )
+anims/fadeout = SubResource( 12 )
+
+[node name="canvas" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="flash" type="Sprite" parent="canvas"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 192.238, 108.264 )
+scale = Vector2( 20, 20 )
+texture = ExtResource( 6 )
+
+[node name="anim" type="AnimationPlayer" parent="canvas/flash"]
+anims/fadeout = SubResource( 13 )
+anims/flash = SubResource( 14 )
+
+[node name="shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="credits2" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[connection signal="mouse_entered" from="start" to="." method="_on_start_mouse_entered"]
+[connection signal="mouse_entered" from="tutorial" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="mouse_entered" from="quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_entered" from="credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="timeout" from="timer_tutorial" to="." method="_on_timer_tutorial_timeout"]
+[connection signal="animation_finished" from="screen_darkener/anim" to="." method="_on_anim_animation_finished"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/GUI/title.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/dpcomic.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 13
+font_data = ExtResource( 2 )
+
+[node name="credits" type="Sprite"]
+position = Vector2( 240, 135 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -112.241
+margin_top = -53.8089
+margin_right = 448.759
+margin_bottom = 215.191
+rect_scale = Vector2( 0.4, 0.4 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "LEVEL DESIGNER: Satoshi Matos
+PROGRAMMER: Satoshi Matos
+GRAPHICS DESIGNER: Satoshi Matos
+SOUND EDITOR: Satoshi Matos
+(The music, however, is property of CAPCOM and I make no claim whatsoever)
+
+SPECIAL THANKS:
+Renato Yuji Toyama
+Renan Yasuo Uezu
+Fellipe \"Moura\" Butuem Soares
+Vitor Martins do Nascimento
+All the beta testers
+The Godot Development Team
+NoiseForFun.com (for providing some of the audio)
+
+The music used in this project is property of CAPCOM (all rights reserved)
+All the graphical assets in this project were designed by Satoshi Matos
+and shouldn't be used without his permission."
+align = 1
+valign = 1
+

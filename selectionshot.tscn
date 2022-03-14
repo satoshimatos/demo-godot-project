@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://menuselection.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Animations/biglaser.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=3]
+
+[node name="selectionshot" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="chargedshot" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="lighting" type="Light2D" parent="chargedshot"]
+texture = ExtResource( 3 )
+offset = Vector2( 4, 0 )
+texture_scale = 2.5
+color = Color( 0.941176, 0.435294, 0.435294, 1 )
+shadow_enabled = true
+

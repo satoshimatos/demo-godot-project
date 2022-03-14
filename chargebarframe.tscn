@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/GUI/chargebarframe.png" type="Texture" id=1]
+[ext_resource path="res://chargebarframe.gd" type="Script" id=2]
+[ext_resource path="res://Assets/GUI/hpbar2.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "glow"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 0.999999, 1 ),
+"update": 0,
+"values": [ Color( 2, 5, 0, 1 ), Color( 2, 0, 0, 1 ), Color( 2, 5, 0, 1 ) ]
+}
+
+[node name="chargebarframe" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="chargebarbackground" type="TextureProgress" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = -29.0085
+margin_top = 1.00029
+margin_right = 34.9915
+margin_bottom = 41.0003
+value = 100.0
+texture_under = ExtResource( 3 )
+
+[node name="chargebar" type="TextureProgress" parent="."]
+modulate = Color( 2, 3.20297, 0, 1 )
+show_behind_parent = true
+margin_left = -28.573
+margin_top = 1.34101
+margin_right = 35.427
+margin_bottom = 65.341
+value = 100.0
+texture_progress = ExtResource( 3 )
+
+[node name="anim" type="AnimationPlayer" parent="chargebar"]
+anims/glow = SubResource( 1 )
+

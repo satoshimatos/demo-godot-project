@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://teleporter.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Objects/teleporter1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/teleporter2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Objects/teleporter3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Objects/teleporter.png" type="Texture" id=5]
+[ext_resource path="res://Assets/GUI/energybar.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Charsets/vitor_hattrick6.png" type="Texture" id=7]
+[ext_resource path="res://teleport_out_particles.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Objects/heartparticle.png" type="Texture" id=9]
+[ext_resource path="res://Assets/SFX/tp_out.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/SFX/ping.wav" type="AudioStream" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 16, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -10, 0 )
+angular_velocity = 7.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0, 2, 0, 0.4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "fadeout"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1.6, 2.4, 3.2 ),
+"transitions": PoolRealArray( 168.897, 194.012, 163.144, 107.635, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.3 ), Color( 0, 0, 0, 0.6 ), Color( 0, 0, 0, 0.8 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="teleporter" type="RigidBody2D"]
+collision_layer = 16384
+collision_mask = 1048575
+mode = 1
+mass = 7.6
+script = ExtResource( 1 )
+scene = "res://MainMenu.tscn"
+
+[node name="animation" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+light_mask = 1032193
+polygon = PoolVector2Array( 33.4445, 31.913, 22.4847, 22.9899, -23.5291, 23.0179, -33.8419, 31.94 )
+
+[node name="particles" type="Particles2D" parent="."]
+show_behind_parent = true
+position = Vector2( 1.10416, 20.0589 )
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 2 )
+
+[node name="lightbase" type="Light2D" parent="."]
+texture = ExtResource( 5 )
+color = Color( 0.670588, 0.988235, 0.521569, 1 )
+energy = 1.5
+
+[node name="lightbase2" type="Light2D" parent="."]
+position = Vector2( 1.0281, -69.5195 )
+scale = Vector2( 1.0714, 4.39476 )
+texture = ExtResource( 6 )
+texture_scale = 3.0
+color = Color( 0.670588, 0.988235, 0.521569, 1 )
+energy = 1.5
+
+[node name="teleport_out" type="TextureProgress" parent="."]
+visible = false
+show_behind_parent = true
+margin_left = -49.25
+margin_top = -55.1927
+margin_right = 50.75
+margin_bottom = 44.8073
+max_value = 500.0
+value = 500.0
+rounded = true
+texture_progress = ExtResource( 7 )
+fill_mode = 3
+
+[node name="teleport_out_particles" parent="teleport_out" instance=ExtResource( 8 )]
+
+[node name="blackscreen" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0 )
+scale = Vector2( 500, 500 )
+texture = ExtResource( 9 )
+
+[node name="anim" type="AnimationPlayer" parent="blackscreen"]
+anims/fadeout = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="tp_out" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -8.0
+
+[node name="ping" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="ping_timer" type="Timer" parent="."]
+one_shot = true
+

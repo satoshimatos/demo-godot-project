@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemy_hp_bar.gd" type="Script" id=1]
+[ext_resource path="res://Assets/GUI/enemy_hp_light.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI/enemy_hp_bar_black.png" type="Texture" id=3]
+[ext_resource path="res://Assets/GUI/enemy_hp_bar.png" type="Texture" id=4]
+[ext_resource path="res://Assets/GUI/enemy_hp.png" type="Texture" id=5]
+
+[node name="enemy_hp_bar" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="light" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+
+[node name="progress" type="TextureProgress" parent="."]
+margin_left = -10.8414
+margin_top = -2.21006
+margin_right = 23.1586
+margin_bottom = 3.78994
+max_value = 15.0
+value = 15.0
+rounded = true
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+
+[node name="enemy_hp" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NFF-knocking-03.wav-3d43bdb8ddbb6f5ac0f0246f24ae9a2c.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/NFF-knocking-03.wav"
+dest_files=[ "res://.import/NFF-knocking-03.wav-3d43bdb8ddbb6f5ac0f0246f24ae9a2c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shooting_star.wav-d7de6778606f76c421ebd4bb5cb607b4.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/shooting_star.wav"
+dest_files=[ "res://.import/shooting_star.wav-d7de6778606f76c421ebd4bb5cb607b4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/guitar_play2.wav-e928e3d843018e203827b414b3171759.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/guitar_play2.wav"
+dest_files=[ "res://.import/guitar_play2.wav-e928e3d843018e203827b414b3171759.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,125 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://jumper_zapper.gd" type="Script" id=1]
+[ext_resource path="res://jumper_zapper_collisionD.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Charsets/jumpingcoil1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Charsets/jumpingcoil2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Charsets/jumpingcoil3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Charsets/jumpingcoil4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Charsets/jumpingcoil5.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Animations/electricity_coil_1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Animations/electricity_coil_2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Animations/electricity_coil_3.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Animations/electricity_coil_4.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=12]
+[ext_resource path="res://Assets/SFX/electricity_2_loop.wav" type="AudioStream" id=13]
+[ext_resource path="res://enemy_hp_bar.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 24.6364 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "hit"
+length = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("../animation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 7 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "readytojump",
+"speed": 4.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="jumper_zapper" type="KinematicBody2D"]
+collision_layer = 1024
+collision_mask = 50176
+script = ExtResource( 1 )
+
+[node name="area2d_for_collision" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="collision2" type="CollisionShape2D" parent="area2d_for_collision"]
+visible = false
+position = Vector2( 0, 5.50759 )
+scale = Vector2( 1.1, 1.1 )
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="area2d_for_collision"]
+anims/hit = SubResource( 2 )
+
+[node name="visibility" type="VisibilityNotifier2D" parent="area2d_for_collision"]
+scale = Vector2( 5, 6 )
+
+[node name="animation" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "idle"
+frame = 4
+playing = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5.50759 )
+shape = SubResource( 1 )
+
+[node name="timertojump" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = true
+
+[node name="timer2" type="Timer" parent="."]
+wait_time = 0.02
+
+[node name="lightning" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0.5 )
+frames = SubResource( 4 )
+frame = 1
+playing = true
+offset = Vector2( 0, -3 )
+
+[node name="lighting" type="Light2D" parent="lightning"]
+texture = ExtResource( 12 )
+
+[node name="spark" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+max_distance = 500.0
+
+[node name="start" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="enemy_hp_bar" parent="." instance=ExtResource( 14 )]
+position = Vector2( 0, 36 )
+
+[connection signal="screen_entered" from="area2d_for_collision/visibility" to="." method="_on_visibility_screen_entered"]
+[connection signal="screen_exited" from="area2d_for_collision/visibility" to="." method="_on_visibility_screen_exited"]
+[connection signal="timeout" from="timertojump" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="timer2" to="." method="_on_timer2_timeout"]
+[connection signal="timeout" from="start" to="." method="_on_start_timeout"]

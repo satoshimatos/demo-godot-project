@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Objects/hourglass.png" type="Texture" id=1]
+[ext_resource path="res://stage_timer.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/dpcomic.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/SFX/time_up.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.992157, 0.552941, 0.364706, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "loop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.243137, 0.243137, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="hourglass" type="Sprite"]
+texture = ExtResource( 1 )
+
+[node name="stage_timer" type="Timer" parent="."]
+wait_time = 61.0
+one_shot = true
+autostart = true
+script = ExtResource( 2 )
+
+[node name="text" type="Label" parent="stage_timer"]
+margin_left = 59.2071
+margin_top = 23.3831
+margin_right = 95.2071
+margin_bottom = 40.3831
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 0
+text = "0"
+align = 1
+
+[node name="anim" type="AnimationPlayer" parent="stage_timer/text"]
+anims/flash = SubResource( 2 )
+
+[node name="anim2" type="AnimationPlayer" parent="stage_timer/text"]
+anims/loop = SubResource( 3 )
+
+[node name="time_up" type="AudioStreamPlayer" parent="stage_timer"]
+stream = ExtResource( 4 )
+volume_db = -10.0
+pitch_scale = 0.8
+

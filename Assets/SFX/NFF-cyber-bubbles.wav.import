@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NFF-cyber-bubbles.wav-00e676c56f60ec406ae8ec7d854efe8c.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/NFF-cyber-bubbles.wav"
+dest_files=[ "res://.import/NFF-cyber-bubbles.wav-00e676c56f60ec406ae8ec7d854efe8c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

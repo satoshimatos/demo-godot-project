@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/robot_malfunction.wav-ed5ebbd40003edb77e5f686d13bc587e.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/robot_malfunction.wav"
+dest_files=[ "res://.import/robot_malfunction.wav-ed5ebbd40003edb77e5f686d13bc587e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

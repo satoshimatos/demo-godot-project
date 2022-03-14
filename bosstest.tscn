@@ -1,0 +1,146 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://bosstest.gd" type="Script" id=1]
+[ext_resource path="res://hud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/GUI/blackdot.png" type="Texture" id=3]
+[ext_resource path="res://Character.tscn" type="PackedScene" id=4]
+[ext_resource path="res://space_Parallax.tscn" type="PackedScene" id=5]
+[ext_resource path="res://invincibilityframes.tscn" type="PackedScene" id=6]
+[ext_resource path="res://metalplatform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://TileMap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://space_tileset_layer2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://camera.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/BGM/Boss Battle - Mega Man X4 Music Extended.wav" type="AudioStream" id=11]
+[ext_resource path="res://Songs.gd" type="Script" id=12]
+[ext_resource path="res://Assets/BGM/MegaManX4BossVictory.wav" type="AudioStream" id=13]
+[ext_resource path="res://Assets/SFX/zap_1.wav" type="AudioStream" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "flashing"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.7, 2.75, 3.7, 3.75, 4.5, 4.55, 5.4, 5.45, 5.6, 5.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../thunder:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.7, 3.7, 4.5, 5.4, 5.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, true, true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[node name="stage2" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="hud" parent="." instance=ExtResource( 2 )]
+
+[node name="whitescreen" type="Sprite" parent="hud"]
+visible = false
+scale = Vector2( 1000, 1000 )
+texture = ExtResource( 3 )
+
+[node name="anim" type="AnimationPlayer" parent="hud/whitescreen"]
+anims/flashing = SubResource( 1 )
+
+[node name="hero" type="Node2D" parent="."]
+
+[node name="character" parent="hero" instance=ExtResource( 4 )]
+position = Vector2( 77.6288, 27.9478 )
+motion/sync_to_physics = false
+
+[node name="parallax" parent="hero/character" instance=ExtResource( 5 )]
+
+[node name="invincibilityframes" parent="hero" instance=ExtResource( 6 )]
+
+[node name="platforms" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="platform4" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( -16, 110 )
+
+[node name="platform6" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( -16, 60 )
+
+[node name="platform7" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 368, 60 )
+
+[node name="platform5" parent="platforms" instance=ExtResource( 7 )]
+position = Vector2( 368, 110 )
+
+[node name="TileMap" parent="." instance=ExtResource( 8 )]
+z_index = -1
+collision_mask = 1016832
+tile_data = PoolIntArray( -131075, 19, 0, -131074, -1073741805, 0, -131073, -1073741805, 0, -196608, -1073741805, 0, -196607, -1073741805, 0, -196606, -1073741805, 0, -196605, -1073741805, 0, -196604, -1073741805, 0, -196603, -1073741805, 0, -196602, -1073741805, 0, -196601, -1073741805, 0, -196600, -1073741805, 0, -196599, -1073741805, 0, -196598, -1073741805, 0, -196597, -1073741805, 0, -196596, -1073741805, 0, -196595, 19, 0, -65539, 19, 0, -65538, -1073741805, 0, -65537, 1610612757, 0, -131072, 1610612753, 0, -131071, 1610612753, 0, -131070, 1610612753, 0, -131069, 1610612753, 0, -131068, 1610612753, 0, -131067, 1610612753, 0, -131066, 1610612753, 0, -131065, 1610612753, 0, -131064, 1610612753, 0, -131063, 1610612753, 0, -131062, 1610612753, 0, -131061, -1073741803, 0, -131060, -1073741805, 0, -131059, 19, 0, -3, 19, 0, -2, 1610612757, 0, -1, -1610612716, 0, -65525, 1610612756, 0, -65524, -1073741803, 0, -65523, 19, 0, 65533, 19, 0, 65534, -1610612719, 0, 12, -1073741807, 0, 13, 19, 0, 131069, 19, 0, 131070, -1610612719, 0, 65548, -1073741807, 0, 65549, 19, 0, 196605, 19, 0, 196606, -1610612719, 0, 131084, -1073741807, 0, 131085, 19, 0, 262141, 19, 0, 262142, -1610612719, 0, 196620, -1073741807, 0, 196621, 19, 0, 327677, 19, 0, 327678, -1610612719, 0, 262156, -1073741807, 0, 262157, 19, 0, 393213, 19, 0, 393214, -1610612715, 0, 393215, 17, 0, 327680, 17, 0, 327681, 17, 0, 327682, 17, 0, 327683, 17, 0, 327684, 17, 0, 327685, 17, 0, 327686, 17, 0, 327687, 17, 0, 327688, 17, 0, 327689, 17, 0, 327690, 17, 0, 327691, 17, 0, 327692, 21, 0, 327693, 19, 0, 458749, 19, 0, 458750, 19, 0, 458751, 19, 0, 393216, 19, 0, 393217, 19, 0, 393218, 19, 0, 393219, 19, 0, 393220, 19, 0, 393221, 19, 0, 393222, 19, 0, 393223, 19, 0, 393224, 19, 0, 393225, 19, 0, 393226, 19, 0, 393227, 19, 0, 393228, 19, 0, 393229, 19, 0 )
+
+[node name="space_tileset_layer2" parent="TileMap" instance=ExtResource( 9 )]
+tile_data = PoolIntArray( -1, 0, 0, -65536, -1610612734, 0, -65535, 0, 0, -65534, -1610612734, 0, -65533, 0, 0, -65532, -1610612734, 0, -65531, 0, 0, -65530, -1610612734, 0, -65529, 0, 0, -65528, -1610612734, 0, -65527, 0, 0, -65526, -1610612734, 0, -65525, 0, 0, 65535, 0, 0, 0, -1610612732, 0, 1, 0, 0, 2, -1610612732, 0, 3, 0, 0, 4, -1610612732, 0, 5, 0, 0, 6, -1610612732, 0, 7, 0, 0, 8, -1610612732, 0, 9, 0, 0, 10, -1610612732, 0, 11, 0, 0, 131071, 0, 0, 65536, -1610612734, 0, 65537, 0, 0, 65538, -1610612734, 0, 65539, 0, 0, 65540, -1610612734, 0, 65541, 0, 0, 65542, -1610612734, 0, 65543, 0, 0, 65544, -1610612734, 0, 65545, 0, 0, 65546, -1610612734, 0, 65547, 0, 0, 196607, 0, 0, 131072, 1, 0, 131073, 0, 0, 131074, 1, 0, 131075, 0, 0, 131076, 1, 0, 131077, 0, 0, 131078, 1, 0, 131079, 0, 0, 131080, 1, 0, 131081, 0, 0, 131082, 1, 0, 131083, 0, 0, 262143, 0, 0, 196608, -1610612734, 0, 196609, 0, 0, 196610, -1610612734, 0, 196611, 0, 0, 196612, -1610612734, 0, 196613, 0, 0, 196614, -1610612734, 0, 196615, 0, 0, 196616, -1610612734, 0, 196617, 0, 0, 196618, -1610612734, 0, 196619, 0, 0, 327679, 0, 0, 262144, -1610612732, 0, 262145, 0, 0, 262146, -1610612732, 0, 262147, 0, 0, 262148, -1610612732, 0, 262149, 0, 0, 262150, -1610612732, 0, 262151, 0, 0, 262152, -1610612732, 0, 262153, 0, 0, 262154, -1610612732, 0, 262155, 0, 0 )
+
+[node name="screen_darkener" type="CanvasModulate" parent="."]
+color = Color( 0.6, 0.6, 0.6, 1 )
+
+[node name="blackscreen" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1000, 1000 )
+texture = ExtResource( 3 )
+
+[node name="anim" type="AnimationPlayer" parent="blackscreen"]
+anims/fadein = SubResource( 2 )
+
+[node name="camera" parent="." instance=ExtResource( 10 )]
+position = Vector2( 176, 70 )
+limit_bottom = 200
+editor_draw_limits = true
+
+[node name="timertostart" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 11 )
+volume_db = -3.0
+script = ExtResource( 12 )
+
+[node name="audio_controller" type="AnimationPlayer" parent="music"]
+
+[node name="victory" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 13 )
+volume_db = -5.0
+
+[node name="thunder" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -6.0
+pitch_scale = 0.8
+
+[connection signal="timeout" from="timertostart" to="." method="_on_timertostart_timeout"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://chargedshot.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Animations/biglaser.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SFX/laser_2.wav" type="AudioStream" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 12.31
+height = 16.717
+
+[node name="pencil" type="Node2D"]
+position = Vector2( 0.342502, 19.3932 )
+
+[node name="chargedshot" type="Area2D" parent="."]
+position = Vector2( 0, 10 )
+script = ExtResource( 1 )
+velocity = Vector2( 600, 0 )
+
+[node name="shot" type="Sprite" parent="chargedshot"]
+texture = ExtResource( 2 )
+
+[node name="light" type="Light2D" parent="chargedshot/shot"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+offset = Vector2( 4, 0 )
+texture_scale = 2.5
+color = Color( 0.933333, 0.427451, 0.427451, 1 )
+
+[node name="collision" type="CollisionShape2D" parent="chargedshot"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="floor_collision" type="RayCast2D" parent="chargedshot/collision"]
+position = Vector2( 0, 5 )
+rotation = -1.5708
+scale = Vector2( 1, 6 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+collision_mask = 16385
+
+[node name="visibility" type="VisibilityNotifier2D" parent="chargedshot"]
+scale = Vector2( 3, 2 )
+
+[node name="charged" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[connection signal="screen_exited" from="chargedshot/visibility" to="chargedshot" method="_on_visibility_screen_exited"]

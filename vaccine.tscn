@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://vaccine.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Charsets/jumpingcoil1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Charsets/jumpingcoil2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Charsets/jumpingcoil3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Charsets/jumpingcoil4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Charsets/jumpingcoil5.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Animations/electricity_coil_1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Animations/electricity_coil_2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Animations/electricity_coil_3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Animations/electricity_coil_4.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Animations/light.png" type="Texture" id=11]
+[ext_resource path="res://Assets/SFX/electricity_1.wav" type="AudioStream" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "readytojump",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "jumping",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 8.07177
+height = 28.971
+
+[sub_resource type="Animation" id=3]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("animation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.03, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="vaccine" type="Area2D"]
+collision_mask = 50176
+script = ExtResource( 1 )
+y_corr = -30
+
+[node name="animation" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5.50759 )
+shape = SubResource( 2 )
+
+[node name="timertojump" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = true
+
+[node name="timer2" type="Timer" parent="."]
+wait_time = 0.02
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/hit = SubResource( 3 )
+
+[node name="collision_ray" type="RayCast2D" parent="."]
+position = Vector2( -0.166084, -18.9336 )
+enabled = true
+collision_mask = 16384
+
+[node name="collision_ray_right" type="RayCast2D" parent="."]
+position = Vector2( 0.166, 5 )
+scale = Vector2( 1, 10 )
+enabled = true
+cast_to = Vector2( 8, 0 )
+collision_mask = 16384
+
+[node name="collision_ray_up" type="RayCast2D" parent="."]
+position = Vector2( 0.166, -20 )
+scale = Vector2( 3, 1 )
+enabled = true
+cast_to = Vector2( 0, -5 )
+collision_mask = 16384
+
+[node name="collision_ray_left" type="RayCast2D" parent="."]
+position = Vector2( 0.166, 5 )
+scale = Vector2( 1, 10 )
+enabled = true
+cast_to = Vector2( -8, 0 )
+collision_mask = 16384
+
+[node name="lightning" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0.5 )
+frames = SubResource( 4 )
+frame = 3
+playing = true
+offset = Vector2( 0, -3 )
+
+[node name="lighting" type="Light2D" parent="lightning"]
+texture = ExtResource( 11 )
+
+[node name="spark" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+max_distance = 500.0
+
+[connection signal="timeout" from="timertojump" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="timer2" to="." method="_on_timer2_timeout"]

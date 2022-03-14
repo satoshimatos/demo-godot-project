@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/GUI/energybar_frame.png" type="Texture" id=1]
+[ext_resource path="res://energybar_frame.gd" type="Script" id=2]
+[ext_resource path="res://Assets/GUI/energybar.png" type="Texture" id=3]
+
+[node name="energybar_frame" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="bar" type="Sprite" parent="."]
+modulate = Color( 0.0164032, 0.839844, 0.0164032, 1 )
+show_behind_parent = true
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="energybar" type="TextureProgress" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+margin_left = -5.94986
+margin_top = -8.15352
+margin_right = 34.0501
+margin_bottom = 31.8465
+max_value = 30.0
+texture_progress = ExtResource( 3 )
+fill_mode = 2
+
